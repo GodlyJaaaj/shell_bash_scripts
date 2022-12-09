@@ -74,17 +74,17 @@ re: fclean all
 
 .PHONY: all clean fclean re" > Makefile
 
-if [ $# -eq 2 ] && [ $2 == "-math" ]
+if [ $# -ge 2 ] && [ $2 == "-math" ]
 then
 		sed -n 's/ -Wall -Wno-unused-variable -Wno-unused-parameter -Wextra -Iinclude -o \$(NAME) -g/ -Wall -g3 -lm -Wno-unused-variable -Wno-unused-parameter -Wextra -Iinclude -o \$(NAME)/p' Makefile
 fi
 
-if [ $# -eq 2 ] && [ $2 == "-ncurses" ]
+if [ $# -ge 2 ] && [ $2 == "-ncurses" ]
 then
 		sed -n 's/ -Wall -Wno-unused-variable -Wno-unused-parameter -Wextra -Iinclude -o \$(NAME) -g/ -Wall -g3 -lncurses -Wno-unused-variable -Wno-unused-parameter -Wextra -Iinclude -o \$(NAME)/p' Makefile
 fi
 
-if [ $# -eq 2 ] && [ $2 == "-csfml" ]
+if [ $# -ge 2 ] && [ $2 == "-csfml" ]
 then
 		sed -n 's/ -Wall -Wno-unused-variable -Wno-unused-parameter -Wextra -Iinclude -o \$(NAME) -g/ -Wall -g3 -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -lcsfml-network -Wno-unused-variable -Wno-unused-parameter -Wextra -Iinclude -o \$(NAME)/p' Makefile
 fi
