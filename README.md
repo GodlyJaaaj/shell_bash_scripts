@@ -22,7 +22,7 @@ The .gitignore file will by default ignore all .out, .txt, .pdf, .log, .vscode, 
 ./init_my_repo.sh [bin_name] [options]
 
 Bin_name:
-    the name of the binary file that will be created by the Makefile, this is also the name of the .h file that will be created in the include folder.
+    the name of the binary file that will be\ created by the Makefile, this is also the name of the .h file that will be created in the include folder.
 
 Options: (only one at a time)
     -math : add -lm to the Makefile
