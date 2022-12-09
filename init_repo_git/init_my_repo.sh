@@ -1,4 +1,4 @@
-#!/bin/bash
+$#!/bin/bash
 
 if [ $# -eq 0 ]
 then
@@ -11,7 +11,8 @@ then
 fi
 
 BIN=${1:-"default"}
-MAKEFILE2=$(echo $BIN | sed 's/[.]/_/g' |sed 's/[a-z]/\U&/g' | sed 's/$/_H_/')
+MAKEFILENAME=$(echo $BIN | sed 's/[[:punct:][:space:][:cntrl:]]/_/g')
+MAKEFILE2=$(echo $BIN | sed 's/[[:punct:][:space:]]/_/g' | sed 's/[a-z]/\U&/g' | sed 's/$/_H_/')
 mkdir include
 mkdir src
 echo "*.out
@@ -31,7 +32,7 @@ echo "/*
 #ifndef $MAKEFILE2
     #define $MAKEFILE2
 #endif
-" > include/$BIN.h
+" > include/"$MAKEFILENAME".h
 echo "/*
 ** EPITECH PROJECT, 2022
 ** ----
