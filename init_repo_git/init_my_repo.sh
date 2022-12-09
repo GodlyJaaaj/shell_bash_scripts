@@ -12,7 +12,6 @@ fi
 
 BIN=${1:-"default"}
 MAKEFILE2=$(echo $BIN | sed 's/[.]/_/g' |sed 's/[a-z]/\U&/g' | sed 's/$/_H_/')
-bash /home/jaaaaj/my_scripts/create_gitignore.sh
 mkdir include
 mkdir src
 echo "*.out
