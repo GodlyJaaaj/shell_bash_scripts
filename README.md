@@ -13,6 +13,8 @@ This script will create some basics files for your project. It will create a Mak
 
 You can use options to add some compilation flags to the Makefile.
 
+The .gitignore file will by default ignore all .out, .txt, .pdf, .log, .vscode, .idea and vgcore.* (valgrind files) files.
+
 ```txt
 ./init_my_repo.sh [bin_name] [options]
 
@@ -22,5 +24,5 @@ Options (only one at a time):) :
     -csfml: add -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -lcsfml-network to the Makefile
 
 Example:
-    ./init_my_repo.sh my_sokoban -ncurses
+    ./init_my_repo.sh "my_sokoban" -ncurses
 ```

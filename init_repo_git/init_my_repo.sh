@@ -11,15 +11,27 @@ then
 fi
 
 BIN=${1:-"default"}
+MAKEFILE2=$(echo $BIN | sed 's/[.]/_/g' |sed 's/[a-z]/\U&/g' | sed 's/$/_/')
 bash /home/jaaaaj/my_scripts/create_gitignore.sh
 mkdir include
 mkdir src
+echo "*.out
+*.txt
+*.pdf
+*.log
+.vscode
+.idea
+vgcore.*" > .gitignore
 echo "/*
 ** EPITECH PROJECT, 2022
 ** ----
 ** File description:
 ** main.c
 */
+
+#ifndef $MAKEFILE2
+    #define $MAKEFILE2
+#endif
 " > include/$BIN.h
 echo "/*
 ** EPITECH PROJECT, 2022
