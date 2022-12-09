@@ -13,7 +13,7 @@ fi
 BIN=${1:-"default"}
 bash /home/jaaaaj/my_scripts/create_gitignore.sh
 mkdir include
-mkdir lib lib/my
+mkdir src
 echo "/*
 ** EPITECH PROJECT, 2022
 ** ----
@@ -32,7 +32,7 @@ int main(int argc, char const *argv[])
 {
     return 0;
 }
-" > lib/my/main.c
+" > src/main.c
 
 echo "##
 ## EPITECH PROJECT, 2022
@@ -41,7 +41,7 @@ echo "##
 ## Makefile
 ##
 
-SRC = \$(shell find ./lib/my/ -type f -name '*.c') \\
+SRC = \$(shell find ./src/ -type f -name '*.c') \\
 
 OBJ = \$(SRC:.c=.o)
 
