@@ -21,7 +21,10 @@ The .gitignore file will by default ignore all .out, .txt, .pdf, .log, .vscode, 
 ```txt
 ./init_my_repo.sh [bin_name] [options]
 
-Options (only one at a time):) :
+Bin_name:
+    the name of the binary file that will be created by the Makefile, this is also the name of the .h file that will be created in the include folder.
+
+Options: (only one at a time)
     -math : add -lm to the Makefile
     -ncurses : add -lncurses to the Makefile
     -csfml: add -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -lcsfml-network to the Makefile
