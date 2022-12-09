@@ -61,7 +61,7 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re" > Makefile
-echo $2 $#
+
 if [ $# -eq 2 ] && [ $2 == "-math" ]
 then
 		sed -n 's/ -Wall -Wno-unused-variable -Wno-unused-parameter -Wextra -Iinclude -o \$(NAME) -g/ -Wall -g3 -lm -Wno-unused-variable -Wno-unused-parameter -Wextra -Iinclude -o \$(NAME)/p' Makefile
