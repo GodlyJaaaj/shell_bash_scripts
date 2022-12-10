@@ -1,4 +1,4 @@
-$#!/bin/bash
+#!/bin/bash
 
 if [ $# -eq 0 ]
 then
@@ -11,29 +11,26 @@ then
 fi
 
 BIN=${1:-"default"}
+MAKEFILEPARAMS=""
 MAKEFILENAME=$(echo $BIN | sed 's/[[:punct:][:space:][:cntrl:]]/_/g')
-MAKEFILE2=$(echo $BIN | sed 's/[[:punct:][:space:]]/_/g' | sed 's/[a-z]/\U&/g' | sed 's/$/_H_/')
+INCLUDE=$(echo $BIN | sed 's/[[:punct:][:space:]]/_/g' | sed 's/[a-z]/\U&/g' | sed 's/$/_H_/')
 mkdir include
 mkdir src
-echo "*.out
+
+#no param
+function create_gitignore () {
+	echo "*.out
 *.txt
 *.pdf
 *.log
 .vscode
 .idea
 vgcore.*" > .gitignore
-echo "/*
-** EPITECH PROJECT, 2022
-** ----
-** File description:
-** main.c
-*/
+}
 
-#ifndef $MAKEFILE2
-    #define $MAKEFILE2
-#endif
-" > include/"$MAKEFILENAME".h
-echo "/*
+#no param
+function create_main () {
+	echo "/*
 ** EPITECH PROJECT, 2022
 ** ----
 ** File description:
@@ -43,10 +40,28 @@ echo "/*
 int main(int argc, char const *argv[])
 {
     return 0;
+}" > src/main.c
 }
-" > src/main.c
 
-echo "##
+#param 1: name of the makefile
+#param 2: name of the include define
+function create_include () {
+	echo "/*
+** EPITECH PROJECT, 2022
+** ----
+** File description:
+** main.c
+*/
+
+#ifndef $1
+    #define $1
+#endif" > include/"$2".h
+}
+
+# param 1: name of the binary
+# param 2: name of the makefile
+function create_makefile () {
+	echo "##
 ## EPITECH PROJECT, 2022
 ## -----
 ## File description:
@@ -57,12 +72,14 @@ SRC = \$(shell find ./src/ -type f -name '*.c') \\
 
 OBJ = \$(SRC:.c=.o)
 
-NAME = $BIN
+NAME = '$1'
 
 all: \$(NAME)
 
 \$(NAME):
-	@gcc \$(SRC) -Wall -Wno-unused-variable -Wno-unused-parameter -Wextra -Iinclude -o \$(NAME) -g
+	@gcc \$(SRC)$2\\
+	 -Wall -Wno-unused-variable -Wno-unused-parameter\\
+	 -Wextra -Iinclude -o \$(NAME) -g
 
 clean:
 	@rm -f \$(OBJ)
@@ -72,19 +89,50 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re" > Makefile
+.PHONY: all clean fclean re" > "Makefile"
+}
 
-if [ $# -ge 2 ] && [ $2 == "-math" ]
-then
-		sed -n 's/ -Wall -Wno-unused-variable -Wno-unused-parameter -Wextra -Iinclude -o \$(NAME) -g/ -Wall -g3 -lm -Wno-unused-variable -Wno-unused-parameter -Wextra -Iinclude -o \$(NAME)/p' Makefile
-fi
+bool_math=false
+bool_ncurses=false
+bool_csfml=false
 
-if [ $# -ge 2 ] && [ $2 == "-ncurses" ]
-then
-		sed -n 's/ -Wall -Wno-unused-variable -Wno-unused-parameter -Wextra -Iinclude -o \$(NAME) -g/ -Wall -g3 -lncurses -Wno-unused-variable -Wno-unused-parameter -Wextra -Iinclude -o \$(NAME)/p' Makefile
-fi
-
-if [ $# -ge 2 ] && [ $2 == "-csfml" ]
-then
-		sed -n 's/ -Wall -Wno-unused-variable -Wno-unused-parameter -Wextra -Iinclude -o \$(NAME) -g/ -Wall -g3 -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -lcsfml-network -Wno-unused-variable -Wno-unused-parameter -Wextra -Iinclude -o \$(NAME)/p' Makefile
-fi
+for i in "$@"
+do
+	case $i in
+		-math)
+			if [ $bool_math = false ]
+			then
+				MAKEFILEPARAMS+=" -lm"
+				bool_math=true
+			fi
+			shift
+			;;
+		-ncurses)
+			if [ $bool_ncurses = false ]
+			then
+				MAKEFILEPARAMS+=" -lncurses"
+				bool_ncurses=true
+			fi
+			shift
+			;;
+		-csfml)
+			if [ $bool_csfml = false ]
+			then
+				MAKEFILEPARAMS+=" -lcsfml-graphics -lcsfml-window\\
+				 -lcsfml-system -lcsfml-audio -lcsfml-network"
+				bool_csfml=true
+			fi
+			shift
+			;;
+		*)
+			shift
+			;;
+	esac
+done
+#remove duplicate elements in MAKEFILEPARAMS
+#MAKEFILEPARAMS=$(echo $MAKEFILEPARAMS | sed -r ':a; s/\b([[:alnum:]]+)\b(.*)\b\1\b/\1\2/g; ta; s/(, )+/, /g; s/, *$//')
+echo $MAKEFILEPARAMS
+create_gitignore
+create_main
+create_include $INCLUDE $MAKEFILENAME
+create_makefile $BIN "$MAKEFILEPARAMS"

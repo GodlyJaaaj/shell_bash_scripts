@@ -26,11 +26,11 @@ Bin_name:
     this is also the name of the .h file that will be created in the
     include folder.
 
-Options: (only one at a time)
+Options:
     -math : add -lm to the Makefile
     -ncurses : add -lncurses to the Makefile
     -csfml: add -lcsfml-graphics -lcsfml-window -lcsfml-system
-    -lcsfml-audio -lcsfml-network to the Makefile
+        -lcsfml-audio -lcsfml-network to the Makefile
 
 Example:
     ./init_my_repo.sh "my_sokoban" -ncurses
