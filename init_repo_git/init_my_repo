@@ -2,7 +2,7 @@
 
 if [ $# -eq 0 ]
 then
-	echo "Usage: ./init_my_repo.sh [project_name] [option]"
+	echo "Usage: $0 [project_name] [option]"
 	echo "Options:"
 	echo -e "\t-math: add -lm to the Makefile"
 	echo -e "\t-ncurses: add -lncurses to the Makefile"
@@ -55,7 +55,7 @@ function create_include () {
 
 #ifndef $1
     #define $1
-#endif" > include/"$2".h
+#endif /*$1*/" > include/"$2".h
 }
 
 # param 1: name of the binary
