@@ -1,8 +1,9 @@
 #!/bin/bash
 
+USAGE_NAME=$(basename $0)
 if [ $# -eq 0 ]
 then
-	echo "Usage: $0 [project_name] [option]"
+	echo "Usage: $USAGE_NAME [project_name] [option]"
 	echo "Options:"
 	echo -e "\t-math: add -lm to the Makefile"
 	echo -e "\t-ncurses: add -lncurses to the Makefile"
