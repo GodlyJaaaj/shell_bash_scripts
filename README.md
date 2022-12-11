@@ -36,3 +36,28 @@ Options:
 Example:
     ./init_my_repo "my_sokoban" -ncurses
 ```
+---
+
+- ## discord_updater
+
+Installing discord on Linux can be a **little bit tricky**.
+So, i made this script to help you install discord on your Linux machine. This script will download the latest version of discord and install it. It can also update discord if you already have it installed.
+
+It can also create a desktop file so you can launch discord from your desktop environment.
+
+```shell
+./discord_updater [install|update] [path]
+```
+
+```txt
+To install discord:
+    ./discord_updater install [path]
+
+To update discord:
+    ./discord_updater update [path]
+
+Path:
+    The path where you want to install discord or update it.
+    If you don't specify a path, the script won't do anything.
+```
+---
