@@ -19,7 +19,7 @@ You can use options to add some compilation flags to the Makefile.
 The .gitignore file will by default ignore all .out, .txt, .pdf, .log, .vscode, .idea and vgcore.* (valgrind files) files.
 
 ```txt
-./init_my_repo.sh [bin_name] [options]
+init_my_repo [bin_name] [options]
 
 Bin_name:
     the name of the binary file that will be created by the Makefile,
@@ -33,5 +33,5 @@ Options:
         -lcsfml-audio -lcsfml-network to the Makefile
 
 Example:
-    ./init_my_repo.sh "my_sokoban" -ncurses
+    init_my_repo "my_sokoban" -ncurses
 ```
