@@ -67,6 +67,7 @@ Path:
 ```diff
 -This script is not finished yet.
 ```
+No need to explain that retrieving function prototypes **is a big pain**.
 The aim of this script is to create a header file containing all the prototypes of the functions in a folder.
 Yet, it only outputs the prototypes of the functions in your terminal.
     
@@ -79,7 +80,7 @@ Yet, it only outputs the prototypes of the functions in your terminal.
 
 OPTIONS:
     -i, --ignore : ignore the coding style checker
-    
+
 example:
     ./create_prototypes main.c -i
 ```
