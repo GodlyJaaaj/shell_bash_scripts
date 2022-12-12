@@ -79,8 +79,7 @@ Yet, it only outputs the prototypes of the functions in your terminal.
 
 OPTIONS:
     -i, --ignore : ignore the coding style checker
-```
-```diff
+    
 example:
     ./create_prototypes main.c -i
 ```
