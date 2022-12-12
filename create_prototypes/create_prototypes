@@ -1,0 +1,51 @@
+#!/bin/bash
+# Create a .h file with prototypes for all functions in a .c file
+# Usage: create_prototypes.sh <file.c>
+#start a coding style checker before the script
+
+#loop through all parameters
+ignore=0;
+for parameter in $@;
+do
+  if [ "$parameter" == "-i" ] || [ "$parameter" == "--ignore" ] ; then
+    echo "Ignore the coding style checker, the script might not work properly";
+    ignore=1
+  fi
+done
+
+if [ $ignore -eq 0 ] ; then
+  echo "Start coding style checker."
+  coding-style . . > /dev/null
+  line_count=$(wc -l < coding-style-reports.log)
+fi
+
+if [ $ignore -eq 0 ] ; then
+  if [ $line_count -ne 0 ] ; then
+  echo "Coding style errors found."
+  cat coding-style-reports.log
+  exit 1
+  fi
+  echo "No coding style errors found."
+  if [ -f coding-style-reports.log ] ; then
+    rm coding-style-reports.log
+  fi
+fi
+
+if [ $# -le 1 ]; then
+    echo "Usage: $(basename "$0") <file.c>"
+    exit 1
+fi
+
+if [ ! -f "$1" ]; then
+    echo "File $1 does not exist"
+    exit 1
+fi
+
+PATHTOTEMP=$(mktemp)
+cat $1 | egrep -i -E '^([a-z])+[*|\n]*([.|\n])*[ ]*[*|\n]*(.)*[(]?' > $PATHTOTEMP
+sed -i 's/)/);/g' $PATHTOTEMP
+cat $PATHTOTEMP
+rm  $PATHTOTEMP
+exit 0
+##cat main.c | egrep -i '^([a-z])+[*|\n]*([.|\n])*[ ]*[*|\n]*(.)*[(]?[.|\n](?:(?!{).)*'
+##cat main.c | egrep -i -E '^([a-z])+[*|\n]*([.|\n])*[ ]*[*|\n]*(.)*[(]?'
