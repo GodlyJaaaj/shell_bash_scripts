@@ -61,3 +61,27 @@ Path:
     If you don't specify a path, the script won't do anything.
 ```
 ---
+
+- ## create_prototypes (WIP)
+
+```diff
+-This script is not finished yet.
+```
+The aim of this script is to create a header file containing all the prototypes of the functions in a folder.
+Yet, it only outputs the prototypes of the functions in your terminal.
+    
+```shell
+./create_prototypes [.c file] [OPTION...]
+```
+```txt
+.c file:
+    The .c file that you want to create the prototypes from.
+
+OPTIONS:
+    -i, --ignore : ignore the coding style checker
+```
+```diff
+example:
+    ./create_prototypes main.c -i
+```
+---
