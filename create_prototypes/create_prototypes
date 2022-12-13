@@ -8,7 +8,7 @@ ignore=0;
 for parameter in $@;
 do
   if [ "$parameter" == "-i" ] || [ "$parameter" == "--ignore" ] ; then
-    echo "Ignore the coding style checker, the script might not work properly";
+    echo "Ignoring the coding style checker... the script might not work properly";
     ignore=1
   fi
 done
