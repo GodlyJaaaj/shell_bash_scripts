@@ -39,6 +39,9 @@ if [ $1 = "install" ]; then
     echo "Do you want to create a desktop entry? (y/n)"
     read -r answer
     if [ "$answer" != "${answer#[Yy]}" ] ;then
+        if [ ! -d ~/.local/share/applications ]; then
+            mkdir -p ~/.local/share/applications
+        fi
         echo "Creating desktop entry"
         EXECPATH=$(pwd)
         EXECPATH+="/Discord/Discord"
