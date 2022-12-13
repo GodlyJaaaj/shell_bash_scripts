@@ -42,7 +42,7 @@ if [ ! -f "$1" ]; then
 fi
 
 PATHTOTEMP=$(mktemp)
-cat $1 | egrep -i '^([a-z])+[*|\n]*([.|\n])*[ ]*[*|\n]*(.)*[(]?' > $PATHTOTEMP
+cat $1 | grep -E -h '^[^ {}/#\*][^;]*[^;]$' > $PATHTOTEMP
 sed -i 's/)/);/g' $PATHTOTEMP
 cat $PATHTOTEMP
 rm  $PATHTOTEMP
