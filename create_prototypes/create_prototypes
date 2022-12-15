@@ -5,6 +5,7 @@
 
 #loop through all parameters
 ignore=0;
+
 for parameter in $@;
 do
   if [ "$parameter" == "-i" ] || [ "$parameter" == "--ignore" ] ; then
@@ -40,12 +41,18 @@ if [ ! -f "$1" ]; then
     echo "File $1 does not exist"
     exit 1
 fi
-
-PATHTOTEMP=$(mktemp)
-cat $1 | grep -E -h '^[^ {}/#\*][^;]*[^;]$' > $PATHTOTEMP
-sed -i 's/)/);/g' $PATHTOTEMP
-cat $PATHTOTEMP
-rm  $PATHTOTEMP
+echo ""
+echo ""
+for parameter in $@; do
+  if [ "$parameter" == "-i" ] || [ "$parameter" == "--ignore" ] ; then
+    continue
+  fi
+  PATHTOTEMP=$(mktemp)
+  cat $parameter | grep -E -h '^[^ {}/#\*][^;]*[^;]$' > $PATHTOTEMP
+  sed -i 's/)/);/g' $PATHTOTEMP
+  cat $PATHTOTEMP
+  rm  $PATHTOTEMP
+done
 exit 0
 ##cat main.c | egrep -i '^([a-z])+[*|\n]*([.|\n])*[ ]*[*|\n]*(.)*[(]?[.|\n](?:(?!{).)*'
 ##cat main.c | egrep -i -E '^([a-z])+[*|\n]*([.|\n])*[ ]*[*|\n]*(.)*[(]?'
