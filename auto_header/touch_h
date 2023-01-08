@@ -7,6 +7,11 @@ if (( $# != 1 )); then
     exit 84
 fi
 
+if [ -f $1 ]; then
+    echo "Error: File $1 already exists"
+    exit 84
+fi
+
 touch $1
 if (( $? != 0 )); then
     echo "Error: Can't create file $1"
