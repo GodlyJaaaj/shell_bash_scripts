@@ -1,0 +1,26 @@
+#!/bin/bash
+# This script will create a C file with the epitech Header
+# Usage: ./touch_h [file_name]
+
+if (( $# != 1 )); then
+    echo "Usage: ./touch_h [file_name]"
+    exit 84
+fi
+
+touch $1
+if (( $? != 0 )); then
+    echo "Error: Can't create file $1"
+    exit 84
+fi
+
+dirname="Unknown"
+#check if the folder .git exist in the current directory
+if [ -d ".git" ]; then
+    dirname=$(git config --get remote.origin.url | sed 's/.*\///' | sed 's/\.git//')
+fi
+echo $dirname
+
+year=$(date +%Y)
+"/*
+** EPITECH PROJECT, $year
+** "
