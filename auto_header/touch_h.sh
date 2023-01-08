@@ -31,5 +31,4 @@ echo "/*
 ** $dirname
 ** File description:
 ** TODO: add description
-*/
-" > $basepwd/$1
+*/" > $basepwd/$1
