@@ -76,13 +76,13 @@ SRC = \$(call rwildcard,src/,*.c)
 OBJ = \$(SRC:.c=.o)
 
 NAME = '$1'
-
+CFLAGS := -I./include
 all: \$(NAME)
 
-\$(NAME):
+\$(NAME): \$(OBJ)
 	@gcc \$(SRC)$2\\
 	 -Wall -Wno-unused-variable -Wno-unused-parameter\\
-	 -Wextra -Iinclude -o \$(NAME) -g
+	 -Wextra -Iinclude \$(CFLAGS) -o \$(NAME)
 
 clean:
 	@rm -f \$(OBJ)
@@ -134,7 +134,7 @@ do
 done
 #remove duplicate elements in MAKEFILEPARAMS
 #MAKEFILEPARAMS=$(echo $MAKEFILEPARAMS | sed -r ':a; s/\b([[:alnum:]]+)\b(.*)\b\1\b/\1\2/g; ta; s/(, )+/, /g; s/, *$//')
-echo $MAKEFILEPARAMS
+#echo $MAKEFILEPARAMS
 create_gitignore
 create_main
 create_include $INCLUDE $MAKEFILENAME
