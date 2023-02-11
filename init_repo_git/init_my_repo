@@ -90,9 +90,17 @@ clean:
 fclean: clean
 	@rm -f \$(NAME)
 
+tests: \$(OBJ)
+	gcc \$(SRC) -lcriterion -Iinclude \$(CFLAGS) -o unit_tests
+
 re: fclean all
 
-.PHONY: all clean fclean re" > "Makefile"
+.PHONY: all clean fclean tests re" > "Makefile"
+}
+
+function create_tests () {
+	mkdir tests
+	touch ./tests/test.c
 }
 
 bool_math=false
@@ -139,3 +147,4 @@ create_gitignore
 create_main
 create_include $INCLUDE $MAKEFILENAME
 create_makefile $BIN "$MAKEFILEPARAMS"
+create_tests
