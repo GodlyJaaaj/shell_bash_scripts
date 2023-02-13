@@ -80,9 +80,9 @@ CFLAGS := -I./include
 all: \$(NAME)
 
 \$(NAME): \$(OBJ)
-	@gcc \$(SRC)$2\\
+	@gcc \$(OBJ)$2\\
 	 -Wall -Wno-unused-variable -Wno-unused-parameter\\
-	 -Wextra -Iinclude \$(CFLAGS) -o \$(NAME)
+	 -Wextra \$(CFLAGS) -o \$(NAME)
 
 clean:
 	@rm -f \$(OBJ)
