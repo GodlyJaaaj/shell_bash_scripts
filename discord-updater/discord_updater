@@ -25,7 +25,7 @@ if [ $1 = "install" ]; then
     fi
     mkdir -p $2
     cd $2
-    wget -q -O discord.tar.gz "https://discord.com/api/download?platform=linux&format=tar.gz"
+    curl "https://discord.com/api/download?platform=linux&format=tar.gz" -L -o discord.tar.gz
     RETURN=$?
     if [ $RETURN -ne 0 ]; then
         echo "Error: $RETURN couldn't download Discord"
@@ -74,7 +74,7 @@ if [ $1 = "update" ]; then
         exit 0
     fi
     rm -rf Discord > /dev/null
-    wget -q -O discord.tar.gz "https://discord.com/api/download?platform=linux&format=tar.gz"
+    curl "https://discord.com/api/download?platform=linux&format=tar.gz" -L -o discord.tar.gz
     RETURN=$?
     if [ $RETURN -ne 0 ]; then
         echo "Error: $RETURN couldn't download Discord"
