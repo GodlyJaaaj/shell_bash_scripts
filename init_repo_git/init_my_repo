@@ -77,22 +77,21 @@ LDFLAGS =$2
 INCLUDES = -I./include
 OBJECTS = \$(SOURCES:.c=.o)
 EXECUTABLE = $1
-SILENT = @
 SOURCES = \$(call rwildcard,src/,*.c)
 
 all: \$(SOURCES) \$(EXECUTABLE)
 
 \$(EXECUTABLE): \$(OBJECTS)
-	\$(SILENT)\$(CC) \$(LDFLAGS) \$(OBJECTS) -o \$@
+	\$(CC) \$(LDFLAGS) \$(OBJECTS) -o \$@
 
 .c.o:
-	\$(SILENT)\$(CC) \$(CFLAGS) \$(INCLUDES) \$< -o \$@
+	\$(CC) \$(CFLAGS) \$(INCLUDES) \$< -o \$@
 
 clean:
-	\$(SILENT)rm -f \$(OBJECTS)
+	rm -f \$(OBJECTS)
 
 fclean: clean
-	\$(SILENT)rm -f \$(EXECUTABLE)
+	rm -f \$(EXECUTABLE)
 
 re: clean all" > "Makefile"
 }
