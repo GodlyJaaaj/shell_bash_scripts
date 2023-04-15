@@ -1,5 +1,11 @@
 #!/bin/bash
 
+#Create dir
+mkdir -p ./src
+mkdir -p ./tests
+mkdir -p ./includes
+##END OF dir
+
 ##Create Makefile
 
 FILE="Makefile"
