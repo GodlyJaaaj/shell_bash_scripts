@@ -27,4 +27,3 @@ mv GodlyJaaaj-shell_bash_scripts-*/* .
 rmdir GodlyJaaaj-shell_bash_scripts-*/
 
 ./init.sh $PROJECT_NAME
-rm init_my_repo
