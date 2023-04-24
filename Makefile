@@ -47,7 +47,7 @@ clean_test: fclean
 tests_run: CFLAGS += $(TESTS_FLAGS)
 tests_run: clean_test $(SOURCES_TESTS_FILES) $(OBJECTS_TESTS_FILES)
 	$(CC) $(TESTS_FLAGS) $(INCLUDES) $(OBJECTS_TESTS_FILES)\
-	-o test_$(EXECUTABLE); ./test_$(EXECUTABLE);
+	 -o test_$(EXECUTABLE); ./test_$(EXECUTABLE);
 
 coverage:
 	gcovr -e tests
