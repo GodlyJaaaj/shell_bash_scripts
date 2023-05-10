@@ -39,7 +39,7 @@ fclean: clean
 	rm -f $(EXECUTABLE)
 	rm -f test_$(EXECUTABLE)
 
-clean_test: fclean
+clean_tests: fclean
 	rm -f $(GCNO_FILES)
 	rm -f $(GCDA_FILES)
 	rm -f $(OBJECTS_TESTS_FILES)
